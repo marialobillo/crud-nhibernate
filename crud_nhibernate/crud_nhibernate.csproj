@@ -8,4 +8,7 @@
     <PackageReference Include="Npgsql" Version="5.0.4" />
     <PackageReference Include="FluentNHibernate" Version="3.1.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Cars\" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,30 @@
+﻿@model crud_nhibernate.Models.Car
+@{
+    ViewData["Title"] = "New Car";
+}
+
+<h4>New Car</h4>
+<hr />
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Registration" class="control-label"></label>
+                <input asp-for="Registration" class="form-control" />
+                <span asp-validation-for="Registration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-outline-success btn-sm" /> &emsp;
+                <a asp-action="Index" class="btn btn-link btn-sm">Go to Menu</a>
+            </div>
+        </form>
+    </div>
+</div>
