@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using crud_nhibernate.Models;
 using NHibernate;
+using NHibernate.Linq;
+using crud_nhibernate.Models;
+
 
 namespace crud_nhibernate.Controllers
 {
@@ -19,9 +19,10 @@ namespace crud_nhibernate.Controllers
             _session = session;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            
+            return View(await _session.Query<Car>().ToListAsync());
         }
 
         [HttpGet]

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<crud_nhibernate.Models.Car>
+
+@{
+    ViewData["Title"] = "Registered Cars";
+}
+
+
+
+<h1>Registered Cars</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-success btn-sm">New Car</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CarId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Registration)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Registration)
+                </td>
+                <td>
+                    <a asp-controller="Carros" asp-action="Update"
+                       asp-route-carroId="@item.CarId"
+                       class="btn btn-outline-info btn-sm">Update</a> &emsp;
+                    <form asp-controller="Carros" asp-action="Delete"
+                          asp-route-carroId="@item.CarId"
+                          onclick="confirm('Sure about deleting the @item.Name ?')">
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
