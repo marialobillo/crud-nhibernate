@@ -46,5 +46,11 @@ namespace crud_nhibernate.Controllers
 
             return View(car);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int carId)
+        {
+            return View();   
+        }
     }
 }
