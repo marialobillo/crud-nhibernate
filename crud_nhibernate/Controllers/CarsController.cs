@@ -50,7 +50,26 @@ namespace crud_nhibernate.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int carId)
         {
-            return View();   
+            return View(await _session.GetAsync<Car>(carId));   
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Update(int carId, Car car)
+        {
+            if (carId != car.CarId)
+                return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                using (ITransaction transaction = _session.BeginTransaction())
+                {
+                    await _session.SaveOrUpdateAsync(car);
+                    await transaction.CommitAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+
+            return View(car);
         }
     }
 }
